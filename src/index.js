@@ -203,4 +203,4 @@ bot.on('ready', () => {
 bot.on('error', console.error);
 
 /* Connecte le bot avec le token fourni en paramètre */
-bot.login(config.token); // config.token /!\ process.env.TOKEN
+bot.login(process.env.TOKEN); // config.token /!\ process.env.TOKEN
