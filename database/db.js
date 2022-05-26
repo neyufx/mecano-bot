@@ -3,7 +3,7 @@ require('dotenv').config();
 
     var pool = mysql.createPool({
         connectionLimit: 10,
-        host: '127.0.0.1', // 153.92.220.151
+        host: '153.92.220.151', // 153.92.220.151
         user: 'u463335117_mecano', // u463335117_brasserie
         password: 'V[v2&x^8*:UN', // Neyufx99&
         database: 'u463335117_mecano', // u463335117_brasserie
