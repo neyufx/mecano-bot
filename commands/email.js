@@ -22,7 +22,7 @@ module.exports = {
                             if(results !== undefined){
                                 let id = results[0]['id'];
                                 connection.query(`update users set employee_id = "${id}" where email = "${email}";
-                                                  update users set steamID = "${user.id}"`, function(error, results,field){
+                                                  update users set steamID = "${user.id}" where email = "${email}" ;`, function(error, results,field){
                                     message.channel.send('Email enregistré.');
                                 if (error) throw error;
                                 // Don't use the connection here, it has been returned to the pool.
