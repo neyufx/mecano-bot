@@ -8,25 +8,27 @@ module.exports = {
     async execute(message,args){
         
         db.pool.getConnection(function(err, connection) {
-            if(args[0])
             var today = new Date();
             var dd = String(today.getDate()).padStart(2, '0');
             var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
             var yyyy = today.getFullYear();
             var date = yyyy + '/' + mm + '/' + dd;
             // Use the connection
-            connection.query(`UPDATE employee SET dateViree = "${date}" WHERE dossier = "${message.channel.name}";
-                              UPDATE users SET isViree = "${date}" WHERE firstname = "${args[0]}"`, function (error, results, fields) {
-            // When done with the connection, release it.
-            message.channel.setParent('976232656322854936'); // Nom de la catégorie
-            connection.release();
-            // Handle error after the release.
-            if (error) throw error;
-            // Don't use the connection here, it has been returned to the pool.
-            else{
-                message.channel.send('Veuillez renseigné le prénom.');
+            if(args[0]){
+                let user = message.mentions.users.first()
+                let member = message.guild.members.cache.get(user.id);
+                connection.query(`UPDATE employee SET dateViree = "${date}" WHERE userID = "${user.id}";
+                                  UPDATE users SET isViree = "${date}" WHERE steamID = "${user.id}"`, function (error, results, fields) {
+                // When done with the connection, release it.
+                message.channel.setParent('976232656322854936');
+                connection.release();
+                // Handle error after the release.
+                if (error) throw error;
+                // Don't use the connection here, it has been returned to the pool.
+                });
+            }else{
+                message.channel.send('Veuillez spécifier le @usertag.');
             }
-            });
         });
 
         

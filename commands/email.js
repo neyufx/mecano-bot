@@ -7,7 +7,7 @@ module.exports = {
     description: 'Confirmer le mail',
     async execute(message,args){
         if(!message.member.permissions.has("ADMINISTRATOR")) return;
-        if(args[0]){
+        if(args[0] && args[1]){
             db.pool.getConnection(function(err, connection) {
                 // Use the connection
                 connection.query(`select email from users where email = "${args[0]}"`, function (error, results, fields) {
@@ -16,11 +16,13 @@ module.exports = {
                         message.channel.send('Aucun mail trouvé.')
                     }else{
                         const email = results[0]['email'];
+                        let user = message.mentions.users.first()
                         connection.query(`select id from employees where dossier = "${message.channel.name}"`, function(error, results,field){
                             // When done with the connection, release it.
                             if(results !== undefined){
                                 let id = results[0]['id'];
-                                connection.query(`update users set employee_id = "${id}" where email = "${email}"`, function(error, results,field){
+                                connection.query(`update users set employee_id = "${id}" where email = "${email}";
+                                                  update users set steamID = "${user.id}"`, function(error, results,field){
                                     message.channel.send('Email enregistré.');
                                 if (error) throw error;
                                 // Don't use the connection here, it has been returned to the pool.
@@ -39,7 +41,7 @@ module.exports = {
                 });
               });
         }else{
-            message.channel.send('Il manque un argument.')
+            message.channel.send('!email <email> <@usertag>')
         }
     }
 }
