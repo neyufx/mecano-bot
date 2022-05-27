@@ -17,8 +17,8 @@ module.exports = {
             if(args[0]){
                 let user = message.mentions.users.first()
                 let member = message.guild.members.cache.get(user.id);
-                connection.query(`UPDATE employee SET dateViree = "${date}" WHERE userID = "${user.id}";
-                                  UPDATE users SET isViree = "${date}" WHERE steamID = "${user.id}"`, function (error, results, fields) {
+                connection.query(`UPDATE employee SET dateViree = "${date}" WHERE userID = "${user.id}"`, function (error, results, fields) {
+                connection.query(`UPDATE users SET isViree = "${date}" WHERE steamID = "${user.id}"`, function (error, results, fields) {
                 // When done with the connection, release it.
                 message.channel.setParent('976232656322854936');
                 connection.release();
@@ -26,6 +26,7 @@ module.exports = {
                 if (error) throw error;
                 // Don't use the connection here, it has been returned to the pool.
                 });
+            });
             }else{
                 message.channel.send('Veuillez spécifier le @usertag.');
             }
