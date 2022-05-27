@@ -27,9 +27,9 @@ module.exports = {
                                 if (error) throw error;
                                 // Don't use the connection here, it has been returned to the pool.
                                 });
+                            }else{
+                                message.channel.send('Email inexistant.')
                             }
-                            // Handle error after the release.
-                            if (error) throw error;
                             // Don't use the connection here, it has been returned to the pool.
                         });
                     }
