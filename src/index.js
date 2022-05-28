@@ -56,6 +56,7 @@ bot.on('ready', () => {
             message.delete(1000);
             // Sets the start time. This overrides any existing timers
             var today = new Date();
+            today.setHours(today.getHours() + 2); // ajout de 2 heures pour être à jour sur l'heure locale
             var dd = String(today.getDate()).padStart(2, '0');
             var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
             var yyyy = today.getFullYear();
@@ -81,6 +82,7 @@ bot.on('ready', () => {
               // The user has an existing timer to stop
               // Calculate the timer result
               var today = new Date();
+              today.setHours(today.getHours() + 2); // ajout de 2 heures pour être à jour sur l'heure locale
               var dd = String(today.getDate()).padStart(2, '0');
               var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
               var yyyy = today.getFullYear();
