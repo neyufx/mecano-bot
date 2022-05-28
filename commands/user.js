@@ -17,7 +17,7 @@ module.exports = {
         let arg1 = args[0];
         let arg2 = args[1];
         let arg3 = nanoid();
-        let arg4 = message.mentions.users.first();
+        let arg4 = message.mentions.users.first().id;
 
         const file = new MessageAttachment("./images/bienvenue.gif");
         const Salons = new MessageEmbed()
