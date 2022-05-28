@@ -28,7 +28,7 @@ module.exports = {
         .setFooter({text:'© Mecano'})
         .setTimestamp();
 
-        message.guild.channels.create(arg3+'-'+arg1, {
+        message.guild.channels.create(arg3+'-'+arg1+'-'+arg2, {
             type: 'GUILD_TEXT',
             parent: '976232656322854937', // Créer channel dans la catégorie
             permissionOverwrites: [{
