@@ -52,7 +52,7 @@ module.exports = {
         message.channel.send({embeds: [embedMessage]});
         db.pool.getConnection(function(err, connection) {
             // Use the connection
-            connection.query(`insert into employees(prenom,nom,dossier,userID) values("${arg1}","${arg2}","${arg3+'-'+arg1+'-'+arg2}","${arg4}")`, function (error, results, fields) {
+            connection.query(`insert into employees(prenom,nom,dossier,userID) values("${arg1}","${arg2}","${arg3+'-'+arg1.toLowerCase()+'-'+arg2.toLowerCase()}","${arg4}")`, function (error, results, fields) {
             // When done with the connection, release it.
             connection.release();
             // Handle error after the release.
