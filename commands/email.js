@@ -20,6 +20,7 @@ module.exports = {
                         connection.query(`select id from employees where dossier = "${message.channel.name}"`, function(error, results,field){
                             // When done with the connection, release it.
                             if(results !== undefined){
+                                console.log(message.channel.name);
                                 console.log(results);
                                 let id = results[0]['id'];
                                 connection.query(`update users set employee_id = "${id}", steamID = "${user.id}" where email = "${email}";`, function(error, results,field){
