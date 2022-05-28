@@ -36,17 +36,8 @@ bot.on('ready', () => {
     const command = args.shift().toLowerCase();
     const mecanoRole = message.member.roles.cache.some(role => role.name === 'Mécano'); // vérifie si rôle mécano
     if(mecanoRole){
-        if(command === 'ticket'){
-            message.delete(1000);
-            bot.commands.get('ticket').execute(message,args);
-        }
-        else if(command === 'accepte'){
-          message.channel.bulkDelete(5);
-            bot.commands.get('accepte').execute(message,args);
-        }
-        else if(command === 'refuse'){
-            message.delete(1000);
-            bot.commands.get('refuse').execute(message,args);
+        if(command === 'user'){
+          bot.commands.get('user').execute(message,args);
         }
         else if(command === 'vire'){
             message.delete(1000);
