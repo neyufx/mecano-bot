@@ -37,6 +37,7 @@ bot.on('ready', () => {
     const mecanoRole = message.member.roles.cache.some(role => role.name === 'Mécano'); // vérifie si rôle mécano
     if(mecanoRole){
         if(command === 'user'){
+          message.delete(1000);
           bot.commands.get('user').execute(message,args);
         }
         else if(command === 'vire'){
